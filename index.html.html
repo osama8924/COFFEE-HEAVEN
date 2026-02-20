@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Heaven | كود مطابق للمواصفات</title>
+    <style>
+        /* --- 1. التنسيق العام (CSS Variables & Global) --- */
+        :root {
+            --main-color: #52c7b8; /* Mint Green */
+            --dark-navy: #1a2a33; /* Dark Navy */
+            --white: #ffffff;
+            --gray-bg: #f4f7f6;
+            --text-color: #333;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--gray-bg);
+            scroll-behavior: smooth;
+        }
+
+        /* --- 2. القائمة العلوية (Navbar) المطابقة للشروط --- */
+        .navbar {
+            background-color: var(--dark-navy);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 8%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--main-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 1.1rem; /* تكبير نص روابط المنيو */
+            padding: 8px 12px; /* مساحة نقر أكبر */
+        }
+
+        .nav-links a:hover {
+            color: var(--main-color); /* Hover Effect */
+        }
+
+        /* --- 3. قسم الواجهة (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero-content h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 1rem; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; }
+        
+        .btn-cta {
+            background-color: var(--main-color);
+            color: var(--dark-navy);
+            padding: 12px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-cta:hover { transform: scale(1.1); box-shadow: 0 5px 15px rgba(82, 199, 184, 0.4); }
+
+        /* --- 4. التنسيق المشترك للأقسام --- */
+        section { padding: 100px 8%; }
+        .section-title { text-align: center; margin-bottom: 50px; font-size: 2rem; color: var(--dark-navy); }
+
+        /* --- 5. قسم عن الكافيه (About Section) --- */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+        .about-image img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0 var(--main-color); }
+
+        /* --- 6. قسم المنيو (Menu Section) --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition); /* Hover Effect */
+            text-align: center;
+        }
+
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: 220px; object-fit: cover; }
+        .card-info { padding: 22px; }
+        .card-info h3 { margin-bottom: 10px; font-size: 1.35rem; } /* تكبير اسم الصنف */
+        .card-info p { font-size: 1.02rem; } /* تكبير وصف الصنف قليلًا */
+        .card-info .price { color: var(--main-color); font-weight: bold; font-size: 1.6rem; display: block; margin-top: 10px; } /* تكبير السعر */
+
+        /* --- 7. قسم العروض (Offers Section) --- */
+        .offers { background-color: var(--dark-navy); color: var(--white); text-align: center; }
+        .offer-box {
+            border: 2px dashed var(--main-color);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- 8. قسم التواصل (Contact Section) --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        .contact-form { display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea {
+            padding: 12px; border: 1px solid #ccc; border-radius: 8px; font-family: inherit;
+        }
+        .contact-form button {
+            background: var(--dark-navy); color: white; border: none; padding: 12px; border-radius: 8px; cursor: pointer; transition: var(--transition);
+        }
+        .contact-form button:hover { background: var(--main-color); color: var(--dark-navy); }
+
+        /* --- 9. التجاوب (Responsive) --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* لإبقاء الكود بسيطاً، يمكن إضافة Menu Toggle لاحقاً */
+            section { padding: 60px 5%; }
+        }
+        /* تحسين شكل اللينكات */
+.nav-links a {
+    position: relative;
+    padding-bottom: 5px;
+}
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--main-color);
+    transition: var(--transition);
+}
+.nav-links a:hover::after {
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="logo">COFFEE HEAVEN</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#offers">Offers</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>قهوتك.. جنتك الخاصة</h1>
+            <p>استمتع بمذاق القهوة المختصة من يد باريستا محترف</p>
+            <a href="#menu" class="btn-cta">View Menu</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2 class="section-title">قصتنا</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <h3>نحن أكثر من مجرد كافيه</h3>
+                <p>بدأنا شغفنا بالقهوة منذ سنوات، نختار حبوب البن بعناية من أفضل المزارع حول العالم لنقدم لك كوباً يغير يومك. باريستا كوفي هيفن يجمع بين العلم والفن في كل كوب.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600" alt="About Coffee">
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" style="background-color: var(--white);">
+        <h2 class="section-title">قائمة المشروبات</h2>
+        <div class="menu-grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=400" alt="Spanish Latte">
+                <div class="card-info">
+                    <h3>أيس سبانش لاتيه</h3>
+                    <p>مزيج كريمي بارد مع الحليب المكثف.</p>
+                    <span class="price">65 EGP</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=400" alt="Flat White">
+                <div class="card-info">
+                    <h3>فلات وايت</h3>
+                    <p>إسبريسو غني مع حليب مخملي ساخن.</p>
+                    <span class="price">55 EGP</span>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://kahwate.com/wp-content/uploads/2021/06/%D9%85%D8%A7-%D9%87%D9%8A-%D9%82%D9%87%D9%88%D8%A9-%D9%83%D9%88%D8%B1%D8%AA%D8%A7%D8%AF%D9%88-1.png" alt="Cortado">
+                <div class="card-info">
+                    <h3>كورتادو</h3>
+                    <p>توازن مثالي بين الإسبريسو والحليب.</p>
+                    <span class="price">50 EGP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offers" class="offers">
+        <div class="offer-box">
+            <h2 style="color: var(--main-color);">عرض الساعة السعيدة!</h2>
+            <p>احصل على خصم 20% على جميع المشروبات الباردة يومياً من الساعة 4 إلى 6 مساءً.</p>
+            <img src="https://images.unsplash.com/photo-1514432324607-2e467f4af445?q=80&w=300" alt="Offer" style="margin-top: 20px; border-radius: 10px;">
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">تواصل معنا</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>بيانات التواصل</h3>
+                <p>📍 العنوان: القاهرة، التجمع الخامس، شارع الـ 90</p>
+                <p>📞 تليفون: 01234567890</p>
+                <p>📧 ايميل: hello@coffeeheaven.com</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="الاسم (Name)" required>
+                <input type="tel" placeholder="رقم الهاتف (Phone)" required>
+                <textarea rows="5" placeholder="رسالتك (Message)" required></textarea>
+                <button type="submit">إرسال الرسالة</button>
+            </form>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 20px; background: var(--dark-navy); color: #8892b0;">
+        جميع الحقوق محفوظة © 2026 | Coffee Heaven
+    </footer>
+
+</body>
+</html>
